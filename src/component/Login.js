@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login',formData,{
+      const response = await axios.post('https://hms-backend-z25r.onrender.com/api/auth/login',formData,{
         headers:{
           'Content-Type':'application/json',
         },

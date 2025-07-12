@@ -16,7 +16,7 @@ useEffect(()=>{
 
   const fetchData = async ()=>{
     try {
-      const response = await axios.get("http://localhost:3001/api/appointment/appo");
+      const response = await axios.get("https://hms-backend-z25r.onrender.com/api/appointment/appo");
       setAppointment(response.data);
     } catch (error) {
       console.error('Error fetching doctor data:', error);
@@ -34,7 +34,7 @@ const handleStatusChange = async(newStatus,appointmentId,index)=>{
     setAppointment(updatedAppointments);
 
     // Make the backend call to update the status in the database
-    await axios.patch(`http://localhost:3001/api/appointment/update-status/${appointmentId}`, {
+    await axios.patch(`https://hms-backend-z25r.onrender.com/api/appointment/update-status/${appointmentId}`, {
       status: newStatus,
     });
 

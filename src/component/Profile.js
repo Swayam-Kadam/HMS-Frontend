@@ -26,7 +26,7 @@ const Profile = () => {
 
         const fetchuser = async ()=>{
             try {
-                const response = await axios.get('http://localhost:3001/api/auth/fetch',{
+                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/auth/fetch',{
                     headers:{
                         'Content-Type' :'application/json',
                         "auth-token" :localStorage.getItem('token')
@@ -43,7 +43,7 @@ const Profile = () => {
 
         const fetchAppointment = async()=>{
             try {
-                const response = await axios.get('http://localhost:3001/api/appointment/appouser',{
+                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/appointment/appouser',{
                     headers:{
                         'Content-Type' :'application/json',
                         "auth-token" :localStorage.getItem('token')
@@ -60,7 +60,7 @@ const Profile = () => {
 
         const fetchMessage = async()=>{
             try {
-                const response = await axios.get('http://localhost:3001/api/message/specific-user',{
+                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/message/specific-user',{
                     headers:{
                         'Content-Type':'application/json',
                         'auth-token':localStorage.getItem('token')
@@ -108,7 +108,7 @@ const Profile = () => {
             };
     
             const response = await axios.patch(
-                `http://localhost:3001/api/auth/update/${userId}`, 
+                `https://hms-backend-z25r.onrender.com/api/auth/update/${userId}`, 
                 updatedUserData, 
                 {
                     headers: {
@@ -139,7 +139,7 @@ const Profile = () => {
         }
 
         try {
-            const response = axios.post('http://localhost:3001/api/message/send',formData,{
+            const response = axios.post('https://hms-backend-z25r.onrender.com/api/message/send',formData,{
                 headers:{
                     'Content-Type':'application/json',
                     "auth-token" :localStorage.getItem('token')

@@ -42,7 +42,7 @@ const Appointment = () => {
   useEffect(()=>{
     const fetch=async()=>{
       try {
-        const response = await axios.get('http://localhost:3001/api/doctor');
+        const response = await axios.get('https://hms-backend-z25r.onrender.com/api/doctor');
         setDoctor(response.data); 
          // Initialize filtered doctors as empty
         setFilteredDoctors([]); 
@@ -59,7 +59,7 @@ const Appointment = () => {
     const stripe = await loadStripe("pk_test_51QzWpjFLeQgcJ2mRgnUt8Jkjz2JWP4eOByXPvvbgUmsO9zd7DsvnIcuuH1yDFxUOobSlhkXZfsawzNt6uvifDxcB00qu9YBSXU");
   
     try {
-      const response = await axios.post('http://localhost:3001/api/appointment/create-checkout-session', {
+      const response = await axios.post('https://hms-backend-z25r.onrender.com/api/appointment/create-checkout-session', {
         appointment: [formData] // Match backend format
       });
   
@@ -121,7 +121,7 @@ const Appointment = () => {
   
     try {
       
-      const response = await axios.post('http://localhost:3001/api/appointment/appo',formData,{
+      const response = await axios.post('https://hms-backend-z25r.onrender.com/api/appointment/appo',formData,{
         headers:{
           'Content-Type':'application/json',
           "auth-token" :localStorage.getItem('token')

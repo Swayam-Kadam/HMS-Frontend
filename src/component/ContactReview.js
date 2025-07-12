@@ -7,7 +7,7 @@ const ContactReview = () => {
   useEffect(() => {
     const fetchMessage = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/contact/get");
+        const response = await axios.get("https://hms-backend-z25r.onrender.com/api/contact/get");
         setMessage(response.data); // Ensure only the relevant data is stored
       } catch (error) {
         console.log("There are some issues fetching messages", error);

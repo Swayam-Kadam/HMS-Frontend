@@ -8,7 +8,7 @@ const Donation = () => {
     useEffect(()=>{
         const fetch=async()=>{
             try {
-                const response = await axios.get('http://localhost:3001/api/auth/all');
+                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/auth/all');
                 const filteredUsers = response.data.filter(user => user.donation?.blood === true); // Filter on frontend
                 const filteredHeart = response.data.filter(user => user.donation?.heart === true); // Filter on frontend
                 setData(filteredUsers);

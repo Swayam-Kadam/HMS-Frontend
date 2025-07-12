@@ -27,7 +27,7 @@ const Contact = () => {
     }
 
     try {
-        const response = axios.post('http://localhost:3001/api/contact/send',formData,{
+        const response = axios.post('https://hms-backend-z25r.onrender.com/api/contact/send',formData,{
             headers:{
                 'Content-Type':'application/json'
               },

@@ -11,7 +11,7 @@ const Analysis = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/appointment/appo'); 
+        const response = await axios.get('https://hms-backend-z25r.onrender.com/api/appointment/appo'); 
         const appointments = response.data;
 
         // Count appointments per department
@@ -36,7 +36,7 @@ const Analysis = () => {
 
     const fetchRevanue = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/api/appointment/appo'); 
+          const response = await axios.get('https://hms-backend-z25r.onrender.com/api/appointment/appo'); 
           const appointments = response.data;
   
           // Count appointments per department
@@ -61,7 +61,7 @@ const Analysis = () => {
 
       const fetchDoctors = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/api/doctor'); 
+          const response = await axios.get('https://hms-backend-z25r.onrender.com/api/doctor'); 
           const doctors = response.data;
   
           // Count appointments per department

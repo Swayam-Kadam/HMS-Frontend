@@ -33,7 +33,7 @@ const Signup = () => {
 
     try {
       
-      const response = await axios.post('http://localhost:3001/api/auth/createuser',formData,{
+      const response = await axios.post('https://hms-backend-z25r.onrender.com/api/auth/createuser',formData,{
         headers:{
           'Content-Type':'application/json',
         },

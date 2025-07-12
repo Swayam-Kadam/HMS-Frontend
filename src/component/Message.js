@@ -14,7 +14,7 @@ const Message = () => {
     useEffect(()=>{
         const fetchMesssage = async () =>{
             try {
-                const response = await axios.get('http://localhost:3001/api/message/fetch');
+                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/message/fetch');
                 setMessage(response.data);
             } catch (error) {
                 console.log("There Are Some Issue To Fetch A Messages",error);

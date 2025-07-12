@@ -43,7 +43,7 @@ const Adddoc = () => {
       data.append(key, formData[key]);
     });
     try {
-      const response = await axios.post('http://localhost:3001/api/doctor', data, {
+      const response = await axios.post('https://hms-backend-z25r.onrender.com/api/doctor', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log('Doctor added successfully:', response.data);

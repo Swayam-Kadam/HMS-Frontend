@@ -39,7 +39,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/doctor'); // Replace with your API endpoint
+        const response = await axios.get('https://hms-backend-z25r.onrender.com/api/doctor'); // Replace with your API endpoint
         setDoctor(response.data);
       } catch (error) {
         console.error('Error fetching doctor data:', error);
