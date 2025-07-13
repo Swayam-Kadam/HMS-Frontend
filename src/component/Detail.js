@@ -3,47 +3,26 @@ import Foter from './Foter'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
+import {Hourglass } from 'react-loader-spinner'
 
 const Detail = () => {
 
-  // const doctor ={
-  //   results:3,
-  //   detais:[
-  //     {
-  //       name:'paresh raval',
-  //       email:'paresh@gamil.com',
-  //       DOB:'1992-12-22',
-  //       NIC:'1234567891012',
-  //       Gender:'Male'
-  //     },
-  //     {
-  //       name:'paresh raval',
-  //       email:'paresh@gamil.com',
-  //       DOB:'1992-12-22',
-  //       NIC:'1234567891012',
-  //       Gender:'Male'
-  //     },
-  //     {
-  //       name:'paresh raval',
-  //       email:'paresh@gamil.com',
-  //       DOB:'1992-12-22',
-  //       NIC:'1234567891012',
-  //       Gender:'Male'
-  //     },
-  //   ]
-  // }
 
   const [doctor,setDoctor] = useState([])
+  const [load,setLoad] = useState(false)
    
   //fetch data from the backend
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://hms-backend-z25r.onrender.com/api/doctor'); // Replace with your API endpoint
+        setLoad(true) // Show loader when fetch starts
+        const response = await axios.get('https://hms-backend-z25r.onrender.com/api/doctor');
         setDoctor(response.data);
       } catch (error) {
         console.error('Error fetching doctor data:', error);
-        toast.error('Error fetching doctor data') //its a notification
+        toast.error('Error fetching doctor data')
+      } finally {
+        setLoad(false) // Hide loader when fetch completes (success or error)
       }
     };
 
@@ -54,7 +33,21 @@ const Detail = () => {
     <div>
       <ToastContainer  position="top-center"  autoClose={3000}   hideProgressBar={false}  newestOnTop={true}  closeOnClick  pauseOnFocusLoss  draggable  pauseOnHover/>
             <div className='container' style={{marginTop:'2rem'}}>
-                <div className="row">
+              {load ? (
+                 // Show loader while loading
+          <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
+            <Hourglass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="hourglass-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            colors={['#1d3557', '#3c5173ff']}
+            />
+            <span className="ms-3">Loading doctors...</span>
+          </div>
+                ):(<div className="row">
                     {doctor.map((item, index) => (
                         <div key={index} className="col-md-3 mb-4">
                               <div className="card" id="card"style={{height: '25rem', width: '100%'}}>
@@ -70,7 +63,8 @@ const Detail = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div>)
+              }
             </div>
             <Foter/>
         </div>

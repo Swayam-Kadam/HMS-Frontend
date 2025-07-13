@@ -156,7 +156,7 @@ const Appointment = () => {
     
     <div>
       <ToastContainer  position="top-center"  autoClose={3000}   hideProgressBar={false}  newestOnTop={true}  closeOnClick  pauseOnFocusLoss  draggable  pauseOnHover/>
-      <div className="container d-flex my-3" style={{ height: '28rem' }}>
+      <div className="container d-flex my-3 " style={{ height: '28rem' }}>
         <div className="Details-doc" id='card'style={{ height: '100%', width: '50%', overflow: 'hidden' }}>
 
           <p style={{ marginTop: '2rem', textAlign: 'left' }}>

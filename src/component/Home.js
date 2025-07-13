@@ -53,20 +53,6 @@ const Home = () => {
     }
   },[])
 
-    // const [startIndex, setStartIndex] = useState(0); // Track the first visible card
-  
-    // const handleScrollRight = () => {
-    //   if (startIndex + 4 < department.length) {
-    //     setStartIndex((prevIndex) => prevIndex + 1); // Move forward by one card
-    //   }
-    // };
-  
-    // const handleScrollLeft = () => {
-    //   if (startIndex > 0) {
-    //     setStartIndex((prevIndex) => prevIndex - 1); // Move backward by one card
-    //   }
-    // };
-
   return (
     <div>
        <ToastContainer  position="top-center"  autoClose={3000}   hideProgressBar={false}  newestOnTop={true}  closeOnClick  pauseOnFocusLoss  draggable  pauseOnHover/>
@@ -101,47 +87,6 @@ const Home = () => {
     <h2 style={{ color: '#457b9d', textAlign: 'left' }}>Department</h2>
       <div className='container d-flex' style={{ marginTop: '1rem', justifyContent:'space-between' }}>
         
-        {/* Left Scroll Button */}
-        {/* <button
-            className="btn btn"
-            onClick={handleScrollLeft}
-            disabled={startIndex === 0}  // Disable when at the first card
-            style={{
-              borderRadius:'50%',
-              marginTop:'8%',
-              left: '-2rem',
-              height: '3rem',
-              width: '3rem',
-              backgroundColor:'#457b9d'
-            }}
-          >
-            &lt;
-          </button>
-
-        {department.slice(startIndex, startIndex + 4).map((item,index)=>(
-          <div  key ={index} className="card" style={{ width: '18rem',height:'15rem'}}>
-          <img className="card-img-top" src={item.src} alt="Card" style={{height:'100%',borderRadius:'2rem'}}/>
-          <strong style={{position:'absolute',bottom:'10%',backgroundColor:'#e63946',color:'#f1faee',borderRadius:'8px',left:'30%'}}>{item.name}</strong>
-          </div>
-        ))} */}
-
-
-          {/* Right Scroll Buttons */}
-          {/* <button
-            className="btn btn"
-            onClick={handleScrollRight}
-            disabled={startIndex + 4 >= department.length}   // Disable when at the last card
-            style={{
-              borderRadius:'50%',
-              marginTop:'8%',
-              right: '-2rem',
-              height: '3rem',
-              width: '3rem',
-              backgroundColor:'#457b9d'
-            }}
-          >
-            &gt;
-          </button>  */}
       </div>
       <Swiper
         effect={'coverflow'}
@@ -262,11 +207,6 @@ const Home = () => {
         </div>
         
       </div>
-
-
-
-
-      
       <Foter />
     </div>
   )
