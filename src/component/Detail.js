@@ -51,7 +51,7 @@ const Detail = () => {
                     {doctor.map((item, index) => (
                         <div key={index} className="col-md-3 mb-4">
                               <div className="card" id="card"style={{height: '25rem', width: '100%'}}>
-                            <img className="card-img-top" src={`http://localhost:3001/${item.img}`} alt="Card cap" style={{height: '40%', width: '100%'}} />
+                            <img className="card-img-top" src={`https://hms-backend-z25r.onrender.com/${item.img}`} alt="Card cap" style={{height: '40%', width: '100%'}} />
                                 <div className="card-body" style={{textAlign:'left'}}>
                                     <h5 className="card-title">Name:-{item.f_name}&nbsp;{item.l_name}</h5>
                                     <h6 className="card-subtitle mb-2 text-muted">Emai:-{item.email}</h6>
