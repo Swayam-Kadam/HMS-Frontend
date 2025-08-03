@@ -3,19 +3,51 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Foter from './Foter'
+import {Hourglass } from 'react-loader-spinner'
 
 
 const Profile = () => {
     const[user,setUser] = useState([]);
-    const [appoinment,setAppointment] = useState([]);
-    const [messages,setMessages] = useState([]);
+    const [appoinment,setAppointment] = useState({
+    data: [],
+    pagination: {
+        total: 0,
+        totalPages: 1,
+        currentPage: 1,
+        itemsPerPage: 10,
+        hasNextPage: false,
+        hasPreviousPage: false
+    }
+    });
+    const [paginationParams, setPaginationParams] = useState({
+    page: 1,
+    limit:6
+    });
+    const [messages,setMessages] = useState({
+    data: [],
+    pagination: {
+        total: 0,
+        totalPages: 1,
+        currentPage: 1,
+        itemsPerPage: 10,
+        hasNextPage: false,
+        hasPreviousPage: false
+    }
+    });
+    const [paginationParamsMessage, setPaginationParamsMessage] = useState({
+    page: 1,
+    limit:6
+    });
 
     const [donation, setDonation] = useState({ blood: false, heart: false });
-
     const [formData,setFormData] = useState({
         title:'',
         message:'',
         tag:''
+    })
+    const [load,setLoad] = useState({
+        appoinment:false,
+        messages:false
     })
     
     useEffect(()=>{
@@ -41,42 +73,76 @@ const Profile = () => {
         }
         fetchuser();
 
-        const fetchAppointment = async()=>{
-            try {
-                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/appointment/appouser',{
-                    headers:{
-                        'Content-Type' :'application/json',
-                        "auth-token" :localStorage.getItem('token')
-                      },
-                });
-
-                setAppointment(response.data)
-            } catch (error) {
-                 console.error('Error fetching Appointment data:', error);
-                 toast.error('Error fetching Appintment data') //its a notification
-            }
+        
         }
-        fetchAppointment()
+    },[])
 
+    useEffect(()=>{
         const fetchMessage = async()=>{
             try {
+                setLoad(prev => ({...prev, messages: true}))
                 const response = await axios.get('https://hms-backend-z25r.onrender.com/api/message/specific-user',{
+                    params: paginationParamsMessage,
                     headers:{
                         'Content-Type':'application/json',
                         'auth-token':localStorage.getItem('token')
                     },
                 });
-                setMessages(response.data)
+                setMessages({
+                data: response.data.data,
+                pagination: response.data.pagination
+                })
+                setLoad(prev => ({...prev, messages:false}))
             } catch (error) {
                 console.error('Error fetching Message data:', error);
                  toast.error('Error fetching Message data') //its a notification
             }
         }
         fetchMessage()
-        
-        }
-    },[])
+    },[paginationParamsMessage])
 
+    //this is for message pagination
+        const handleMessageChange = (newPage) => {
+        setPaginationParamsMessage(prev => ({
+            ...prev,
+            page: newPage
+        }));
+        };
+
+        useEffect(() => {
+                 const fetchAppointment = async()=>{
+            try {
+                setLoad(prev => ({...prev, appoinment: true}))
+                const response = await axios.get('https://hms-backend-z25r.onrender.com/api/appointment/appouser',{
+                    params: paginationParams,
+                    headers:{
+                        'Content-Type' :'application/json',
+                        "auth-token" :localStorage.getItem('token')
+                      },
+                });
+
+                setAppointment({
+                data: response.data.data,
+                pagination: response.data.pagination
+                });
+
+                setLoad(prev => ({...prev, appoinment: false}))
+            } catch (error) {
+                 console.error('Error fetching Appointment data:', error);
+                 toast.error('Error fetching Appintment data') //its a notification
+            }
+        }
+
+        fetchAppointment();
+        }, [paginationParams]);
+
+        //this is for Appointment pagination
+        const handlePageChange = (newPage) => {
+        setPaginationParams(prev => ({
+            ...prev,
+            page: newPage
+        }));
+        };
 
     const handleCheckboxChange = (e) => {
         const { name, checked } = e.target;
@@ -166,7 +232,7 @@ const Profile = () => {
             <div className='container' style={{ height: '10rem', width: '10rem', borderRadius: '50%', background: '#f1faee', marginTop: '4rem' }}>
                 <img className='image' src="/user.webp" alt="img" style={{ height: "87%", width: "84%" }} />
             </div>
-            <div className='container' id='card'style={{  width: '100%', marginTop: '1rem' }}>
+            <div className='container' id='card'style={{  width: '100%', marginTop: '1rem',marginBottom:'1rem' }}>
                 {/* Your Personal Information */}
                 <div className='information d-flex justify-content-center '  >
                     <table className='d-flex ' style={{ justifyContent: 'center' }}>
@@ -211,22 +277,77 @@ const Profile = () => {
                 {/* View Your Appointment  Section */}
 
                 <div className='container' style={{ marginTop: '2rem' }}>
-                    <div className='row'>
+                    
                         <h2 style={{ color: '#457b9d'}}>Appointment:-</h2>
-                        {appoinment.map((item,index)=>(
-                            <div key={index} className="col-md-4 mb-3">
-                            <div className="card" style={{  width: '100%', backgroundColor: '#f1faee' }}>
-                                <div className="card-body" style={{ textAlign: 'left' }}>
-                                    <p className="card-text">Name:-{item.f_name}&nbsp;{item.l_name}</p>
-                                    <p className="card-text ">Emai:-{item.email}</p>
-                                    <p className="card-text">Department:-{item.department}</p>
-                                    <p className="card-text">Doctor:-{item.doctor}</p>
-                                    <p className="card-text">Status:-{item.status}</p>
-                                </div>
-                            </div>
-                        </div>
-                        )) }
+                       
+                    {load.appoinment ? (
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
+                        <Hourglass
+                            visible={true}
+                            height="50"
+                            width="50"
+                            colors={['#1d3557', '#3c5173ff']}
+                        />
+                        <span className="ms-3">Loading appointments...</span>
                     </div>
+                ) : (
+                    <>
+                    <div className='row'>
+                                {appoinment.data.map((item,index)=>(
+                                    <div key={index} className="col-md-4 mb-3">
+                                    <div className="card" style={{  width: '100%', backgroundColor: '#f1faee' }}>
+                                        <div className="card-body" style={{ textAlign: 'left' }}>
+                                            <p className="card-text">Name:-{item.f_name}&nbsp;{item.l_name}</p>
+                                            <p className="card-text ">Emai:-{item.email}</p>
+                                            <p className="card-text">Department:-{item.department}</p>
+                                            <p className="card-text">Doctor:-{item.doctor}</p>
+                                            <p className="card-text">Status:-{item.status}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                )) }
+                        </div>       
+                    
+
+                    {/* Add pagination controls at the bottom */}
+                    <div className="d-flex justify-content-center mt-3">
+                    <nav>
+                        <ul className="pagination">
+                        <li className={`page-item ${!appoinment.pagination.hasPreviousPage && 'disabled'}`}>
+                            <button 
+                            className="page-link" 
+                            onClick={() => handlePageChange(appoinment.pagination.currentPage - 1)}
+                            disabled={!appoinment.pagination.hasPreviousPage}
+                            >
+                            Previous
+                            </button>
+                        </li>
+                        
+                        {Array.from({ length: appoinment.pagination.totalPages }, (_, i) => i + 1).map(page => (
+                            <li key={page} className={`page-item ${appoinment.pagination.currentPage === page && 'active'}`}>
+                            <button className="page-link" onClick={() => handlePageChange(page)}>
+                                {page}
+                            </button>
+                            </li>
+                        ))}
+                        
+                        <li className={`page-item ${!appoinment.pagination.hasNextPage && 'disabled'}`}>
+                            <button 
+                            className="page-link" 
+                            onClick={() => handlePageChange(appoinment.pagination.currentPage + 1)}
+                            disabled={!appoinment.pagination.hasNextPage}
+                            >
+                            Next
+                            </button>
+                        </li>
+                        </ul>
+                    </nav>
+                    </div>
+                    
+                    </>
+        )}
                 </div>
 
                     {/* messege section */}
@@ -245,9 +366,22 @@ const Profile = () => {
                  {/* View Your Message  Section */}
 
             <div className='container' style={{ marginTop: '2rem' }}>
-                    <div className='row'>
+                   
                         <h2 style={{ color: '#457b9d'}}>Your Review:-</h2>
-                        {messages.map((item,index)=>(
+                        {load.messages ? (
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
+                        <Hourglass
+                            visible={true}
+                            height="50"
+                            width="50"
+                            colors={['#1d3557', '#3c5173ff']}
+                        />
+                        <span className="ms-3">Loading Review...</span>
+                    </div>
+                ) : (
+                    <>
+                    <div className='row'>
+                        {messages.data.map((item,index)=>(
                             <div key={index} className="col-md-4 mb-3">
                             <div className="card" style={{  width: '100%', backgroundColor: '#f1faee' }}>
                                 <div className="card-body" style={{ textAlign: 'left' }}>
@@ -258,7 +392,45 @@ const Profile = () => {
                             </div>
                         </div>
                         )) }
+                    
                     </div>
+                    
+                    {/* messages pagination  */}
+                    <div className="d-flex justify-content-center mt-3">
+                    <nav>
+                        <ul className="pagination">
+                        <li className={`page-item ${!messages.pagination.hasPreviousPage && 'disabled'}`}>
+                            <button 
+                            className="page-link" 
+                            onClick={() => handleMessageChange(messages.pagination.currentPage - 1)}
+                            disabled={!messages.pagination.hasPreviousPage}
+                            >
+                            Previous
+                            </button>
+                        </li>
+                        
+                        {Array.from({ length: messages.pagination.totalPages }, (_, i) => i + 1).map(page => (
+                            <li key={page} className={`page-item ${messages.pagination.currentPage === page && 'active'}`}>
+                            <button className="page-link" onClick={() => handleMessageChange(page)}>
+                                {page}
+                            </button>
+                            </li>
+                        ))}
+                        
+                        <li className={`page-item ${!messages.pagination.hasNextPage && 'disabled'}`}>
+                            <button 
+                            className="page-link" 
+                            onClick={() => handleMessageChange(messages.pagination.currentPage + 1)}
+                            disabled={!messages.pagination.hasNextPage}
+                            >
+                            Next
+                            </button>
+                        </li>
+                        </ul>
+                    </nav>
+                    </div>
+                    </>
+                )}
                 </div>
             </div>
 

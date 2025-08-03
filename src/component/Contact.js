@@ -63,9 +63,9 @@ const Contact = () => {
       ></iframe>
       </div>
 
-      <div className="container my-5" id="contact" style={{display:'flex',justifyContent:'space-between'}}>
+      <div className="container my-5  d-sm-inline-flex " id="contact" style={{justifyContent:'space-between'}}>
         {/* send a message form */}
-        <div id='card' style={{width:'45%'}}>
+        <div id='card' className='my-3' style={{width:'45%'}}>
             <form onSubmit={handleSubmit}>
             <h3 style={{color:'#457b9d'}}>Contact Form</h3>
             <input type="text" className='form-control ' placeholder='Enter Your Name' name='name' value={formData.name} onChange={handleChange} required/>
@@ -77,7 +77,7 @@ const Contact = () => {
         </div>
         
         
-        <div id='card' style={{width:'45%'}}>
+        <div id='card' className='my-3' style={{width:'45%'}}>
             <h3 style={{marginBottom:'2rem',color:'#457b9d'}}>Address</h3>
             <table className='d-flex'>
                             <thead>

@@ -44,7 +44,7 @@ const Message = () => {
         }
 
         try {
-            const response = await axios.patch(`http://localhost:3001/api/message/message-update/${id}`,
+            const response = await axios.patch(`https://hms-backend-z25r.onrender.com/api/message/message-update/${id}`,
                 rep,
                 {
                     headers: {
