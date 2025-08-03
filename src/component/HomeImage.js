@@ -4,9 +4,9 @@ const HomeImage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const images = [
-   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home1.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MzliODg2Yi00MTRiLTRmNDktYTQ3NC1hYWU0MjJiNTI2MjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTEuanBnIiwiaWF0IjoxNzUzMTg5NzQwLCJleHAiOjE3NTc1MDk3NDB9.n64wHs_7vq7OBsIR7IYnLuZZxcs8tjRaJaNFeoyxOxs",
-   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MzliODg2Yi00MTRiLTRmNDktYTQ3NC1hYWU0MjJiNTI2MjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTIuanBnIiwiaWF0IjoxNzUzMTg5ODA3LCJleHAiOjE3NTc1MDk4MDd9.Giv7NpupP4yO9NwVjx2AKDfBXxVWqjPF0d6jrp23amM",
-   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home3.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MzliODg2Yi00MTRiLTRmNDktYTQ3NC1hYWU0MjJiNTI2MjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTMuanBnIiwiaWF0IjoxNzUzMTg5ODcwLCJleHAiOjE3NTc1MDk4NzB9.GATkGJsAjXFL_f3LpCQDQvc6PEMfdnJpCFIwXcbD5oU",
+   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home1.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZTZmYTdkZS0zZDNlLTQyMTAtYWRhNC0yNTQwNjFhNGMyMDciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTEuanBnIiwiaWF0IjoxNzU0MjMxODY5LCJleHAiOjMzMzEwMzE4Njl9.kuzLoEPCNs1vrLvbmmFman7oW4n5782Dx-dt_3VJBRg",
+   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZTZmYTdkZS0zZDNlLTQyMTAtYWRhNC0yNTQwNjFhNGMyMDciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTIuanBnIiwiaWF0IjoxNzU0MjMxOTEzLCJleHAiOjMzMzEwMzE5MTN9.T9tL5RCdrgsOn3--9uZ6FVdLDU0695bqAh8uWjMSC-4",
+   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home3.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZTZmYTdkZS0zZDNlLTQyMTAtYWRhNC0yNTQwNjFhNGMyMDciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTMuanBnIiwiaWF0IjoxNzU0MjMxOTMzLCJleHAiOjMzMzEwMzE5MzN9.UBbeWgPFkHIqvS7BzHIMpisL2hJQ9L76-RGueEL_sC4",
   ];
 
   const texts = [
