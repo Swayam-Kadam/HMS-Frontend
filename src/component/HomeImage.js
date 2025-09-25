@@ -4,9 +4,9 @@ const HomeImage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const images = [
-   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home1.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZTZmYTdkZS0zZDNlLTQyMTAtYWRhNC0yNTQwNjFhNGMyMDciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTEuanBnIiwiaWF0IjoxNzU0MjMxODY5LCJleHAiOjMzMzEwMzE4Njl9.kuzLoEPCNs1vrLvbmmFman7oW4n5782Dx-dt_3VJBRg",
-   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZTZmYTdkZS0zZDNlLTQyMTAtYWRhNC0yNTQwNjFhNGMyMDciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTIuanBnIiwiaWF0IjoxNzU0MjMxOTEzLCJleHAiOjMzMzEwMzE5MTN9.T9tL5RCdrgsOn3--9uZ6FVdLDU0695bqAh8uWjMSC-4",
-   "https://vsoioahckrfifdfegmdr.supabase.co/storage/v1/object/sign/hms/home%20images/home3.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZTZmYTdkZS0zZDNlLTQyMTAtYWRhNC0yNTQwNjFhNGMyMDciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJobXMvaG9tZSBpbWFnZXMvaG9tZTMuanBnIiwiaWF0IjoxNzU0MjMxOTMzLCJleHAiOjMzMzEwMzE5MzN9.UBbeWgPFkHIqvS7BzHIMpisL2hJQ9L76-RGueEL_sC4",
+   "https://res.cloudinary.com/dj7o9frvt/image/upload/v1758815647/home1_pmw7dp.jpg",
+   "https://res.cloudinary.com/dj7o9frvt/image/upload/v1758815649/home2_h2nmb5.jpg",
+   "https://res.cloudinary.com/dj7o9frvt/image/upload/v1758815649/home3_yqf0xk.jpg",
   ];
 
   const texts = [
